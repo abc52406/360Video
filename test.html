@@ -1,15 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!-- 元信息 -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="renderer" content="webkit">
-    <meta name="keywords" content="全景图">
-    <meta name="description" content="pengbo.info 全景图">
+    <meta name="keywords" content="全景视频">
+    <meta name="description" content="pengbo.info 全景视频">
     <link rel="icon" type="image/png" href="/public/favicons/favicon-96x96.png" sizes="96x96">
-    <title>全景图</title>
-    <link rel="stylesheet" type="text/css" href="/public/css/pro/event-post-image-af19effa.css">
+    <title>来看我的VR视频</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/pro/event-post-video-e4ce58cd.css">
     <style type="text/css">
         @media (min-width: 900px) {
             body:not(.force-desktop) .mobile-frame-ct {
@@ -36,7 +37,6 @@
             bottom: 0;
         }
     </style>
-
 </head>
 <body class="body">
     <!-- 继承页面 -->
@@ -44,10 +44,12 @@
         <img id="shareimg" src="" alt="shareimg" width="300" height="300">
     </div>
     <div class="mobile-frame-ct">
+        <!-- 页面主体 -->
+        <!-- 页面二维码 -->
         <div class="qrcode-ct">
             <div class="qrcode"></div>
         </div>
-        <!-- image -->
+        <!-- video -->
         <div id="pano-player" class="pano-player">
             <noscript>
                 <table style="width:100%;height:100%;">
@@ -65,52 +67,52 @@
                 </table>
             </noscript>
         </div>
-        <div class="configmenu-mask">
-            <div class="configmenu-ct">
-                <div class="config-title">
-                    设置 <i class="cancle-config iconfont">&#xe614;</i>
-                </div>
-                <ul class="config-list">
-                    <li class="vr-ctl">
-                        <i class="iconfont">&#xe607;</i>
-                        VR 模式
-                        <i class="switcher"></i>
-                    </li>
-                    <li class="gyro-ctl">
-                        <i class="iconfont">&#xe608;</i>
-                        陀螺仪
-                        <i class="switcher"></i>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="liner-bg-top"></div>
-        <div class="liner-bg no-album no-ad"></div>
-        <div class="actions-ct no-ad">
-            <div class="intro">
-                <div class="text-ct">
-                    <span class="text"></span>
-                </div>
-                <span class="text-more"></span>
-            </div>
+        <video id="flat-player" controls="controls" loop="loop" style="display:none;width:100%">
+            your broswer dosen't suppert video player.
+        </video>
+        <div class="actions-ct">
             <div class="widgets">
-                <div class="col time">
+                <div class="col right-border time">
                     <i class="iconfont">&#xe603;</i>
-                    <span class="txt-val post-time-content" data-time="1490954626000"></span>
+                    <span class="txt-val post-time-content" data-time="1491006134000"></span>
                 </div>
                 <div class="col views">
                     <i class="iconfont">&#xe604;</i>
                     <span class="txt-val">0</span>
                 </div>
+                <div class="col likes">
+                    <i class="iconfont empty">&#xe625;</i>
+                    <i class="iconfont fill">&#xe601;</i>
+                    <span class="txt-val">0</span>
+                </div>
             </div>
         </div>
-        <div class="info-detail no-ad">
-            <i class="cancle-detail iconfont">&#xe614;</i>
-            <div class="info-text">
+        <div class="discrib ">
+            <div class="intro-android-tips-ct">
+                <!-- If current browser do not support playing panoramic videos, please  switch to flat mode or
+                View in Insta360 Player -->
+                <p class="compatible">若当前浏览器无法支持全景播放，建议<a id="useFlatPlayer"> 切换成平铺模式 </a>或者</p>
+                <p class="incompatible">你当前浏览器无法支持全景播放，建议</p>
+                <a id="jumpToPlayer" class="button-block button button-primary" href="#openwithplayer">使用 Insta360 PLAYER 播放</a>
             </div>
+            <div class="intro-ct clearfix">
+                <div class="intro-desc-ct">
+                    <div class="intro-desc">
+                        <i class="qrcode-btn iconfont">&#xe606;</i>来看我的VR视频！
+                    </div>
+                </div>
+                <div class="btn-show-all">
+                    全部 <img data-retina-url="/public/images/common/arrow-gray.png" data-img-type="normal">
+                </div>
+            </div>
+        </div>
+        <div class="wechat-mask android">
+            <img class="no-pre-load" style="width:100%" data-retina-url="/public/images/event/post-mobile/android_mask.png" data-img-type="normal">
         </div>
     </div>
-    <script src="/public/player-img/tour.js?v=pr8"></script>
+    <script src='http://staticftp.mgcc.com.cn/wechat/js/vconsole.min.js'></script>
+    <!-- 私有脚本 -->
+    <script src="/public/player-mobile/player.js"></script>
     <script>
         function GetQueryString(prop, url) {
             var re = new RegExp("[?|&]" + prop + "=([^\\&]*)", "i");
@@ -134,30 +136,8 @@
         var _share_source = 'nano';
         var _ad_to_show = 'nano';
         var _api_host = '';
+        window.player_type = 'pano';
         document.title = decodeURI(GetQueryString("tt") || '全景图');
-        embedpano({
-            swf: "/public/player-img/tour.swf?v=pr8",
-            xml: "/public/player-img/tour-bcd5eeee.xml",
-            target: "pano-player",
-            html5: "prefer",
-            passQueryParameters: true,
-
-            initvars: {
-                dishDistortion: 1, //默认渐变后畸变大小 默认1
-                enableAutorotate: false,
-                // autorotateSpeed: 20,
-                fisheyeFov: 90,
-                viewController: 'drag', //控制方式 'gyro'|'drag'
-                debug: false,
-                design: "custom",
-                maxpixelzoom: "0.8",
-                locale: "zh",
-                //以下为相册配置
-                scenesURL: 'https://s.insta360.com/p/' + _postId + '/scenes' + window.location.search, //相册资源xml配置地址（xml由后端模板生成)
-                gallery: false //是否开启相册模式
-            }
-        });
-
         var xmlhttp;
         if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -171,7 +151,38 @@
         var staticresult = xmlstr.substring(xmlstr.indexOf('thumb/') + 6, xmlstr.indexOf('start.jpg'));
         document.getElementById('shareimg').src = 'https://static.insta360.com/share/public/media/thumb/' + staticresult + 'start.jpg?imageView2/0/w/300/h/300';
 
+        // 不要修改以下内容,包括空格（app扫码识别区域） @Jailbreak:admin@vgee.cn
+        // start
+        var HOST = 'http://s.insta360.com';
+        var v720p = HOST + "/public/media/mp4/" + staticresult + "_1440x720.mp4|" + HOST + "/public/media/mp4/" + staticresult + "_audio.mp3";
+        var v480p = HOST + "/public/media/mp4/" + staticresult + "_960x480.mp4|" + HOST + "/public/media/mp4/" + staticresult + "_audio.mp3";
+        var vPoster = "https://static.insta360.com/share/public/media/thumb/9c90577f318a3a87433662ff3e16d9bbprew.jpg";
+        // end
+        var audio = HOST + "/public/media/mp4/" + staticresult + "_audio.mp3";
+        var v720Path = HOST + "/public/media/mp4/" + staticresult + "_1440x720.mp4";
+        var v480Path = HOST + "/public/media/mp4/" + staticresult + "_960x480.mp4";
+
+        v720p = v720Path ? v720Path + '|' + audio : '';
+        v480p = v480Path ? v480Path + '|' + audio : '';
+
+        window.initPano = function () {
+            window.player_type = 'pano';
+            embedpano({
+                swf: "/public/player-mobile/player.swf",
+                xml: "/public/player-mobile/video-8fa11639.xml",
+                target: "pano-player",
+                html5: "prefer",
+                passQueryParameters: true,
+                initvars: {
+                    locale: 'zh',
+                    fisheyeFov: 90,
+                    enableFS: true,
+                    defaultFS: false,
+                    defaultQuality: v720p ? '720' : '480', //480 | 720
+                }
+            });
+        }
     </script>
-    <script src="/public/js/pro/event_post_image-d645ff06.js"></script>
+    <script src="/public/js/pro/event_post_video-5d719020.js"></script>
 </body>
 </html>
