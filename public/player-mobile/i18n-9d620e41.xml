@@ -1,0 +1,35 @@
+<krpano>
+	<i18n 
+		if="locale != 'en'"
+        lang_menu_normal="普通"
+        lang_menu_fish="鱼眼"
+        lang_menu_stere="立体"
+        lang_menu_archi="圆桶"
+        lang_menu_little="小行星"
+        lang_menu_padding="视角"
+        lang_q_title="清晰度"
+        lang_q_v480p="流畅"
+        lang_q_v720p="高清"
+        lang_vrtips_t1="请将手机放入VR眼镜"
+        lang_vrtips_t2="*若横屏无效"
+        lang_vrtips_l1="请开启系统屏幕旋转功能"
+        lang_vrtips_l2="安卓版微信，请到我-设置-通用-开启横屏模式"
+	/>
+
+	<i18n
+		if="locale == 'en'"
+        lang_menu_normal="Normal"
+        lang_menu_fish="Fisheye"
+        lang_menu_stere="Stere"
+        lang_menu_archi="Arch"
+        lang_menu_little="Planet"
+        lang_menu_padding=" View"
+        lang_q_title="quality"
+        lang_q_v480p="480p"
+        lang_q_v720p="720p"
+        lang_vrtips_t1="Please put the phone into VR headset."
+        lang_vrtips_t2="If nothing changes in landscape mode,"
+        lang_vrtips_l1="Please start the landscape mode;"
+        lang_vrtips_l2="For WeChat Android Version, please start the landscape mode in Settings- General- Smart Cover mode."
+	/>
+</krpano>
